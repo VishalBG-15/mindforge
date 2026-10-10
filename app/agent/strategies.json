@@ -1,0 +1,42 @@
+[
+  {
+    "id": "clear_never_miss_twice",
+    "book": "Atomic Habits",
+    "author": "James Clear",
+    "rule_name": "Never Miss Twice (Minimum Viable Habit)",
+    "friction_trigger": "STREAK_BREAK_DANGER",
+    "downscale_factor": 0.2,
+    "core_principle": "An imperfect 2-minute version beats a skipped 60-minute session. Redefine victory from execution perfection to maintaining identity.",
+    "coaching_directive": "Reframe the session. Strip away all performance expectations and direct the user to complete only the micro-floor version today."
+  },
+  {
+    "id": "atomic_two_minute_rule",
+    "book": "Atomic Habits",
+    "author": "James Clear",
+    "rule_name": "The Two-Minute Rule",
+    "friction_trigger": "HIGH_RESISTANCE_BURNOUT",
+    "downscale_factor": 0.3,
+    "core_principle": "Scale the habit down so it takes two minutes or less to perform, reducing activation resistance during physiological fatigue.",
+    "coaching_directive": "Acknowledge depleted capacity without judgment. Radically scale down the target to protect the habit baseline."
+  },
+  {
+    "id": "fogg_habit_stacking",
+    "book": "Tiny Habits",
+    "author": "BJ Fogg",
+    "rule_name": "Anchor Cue Linking (Habit Stacking)",
+    "friction_trigger": "FORGETFULNESS_NO_ROUTINE",
+    "downscale_factor": 1.0,
+    "core_principle": "Attach the target behavior immediately after a stable, automatic daily anchor (e.g., 'After I sit down with my morning coffee, I will...').",
+    "coaching_directive": "Help the user identify an existing daily anchor routine and bind this habit directly behind it."
+  },
+  {
+    "id": "duhigg_temptation_bundling",
+    "book": "The Power of Habit",
+    "author": "Charles Duhigg",
+    "rule_name": "Craving & Temptation Bundling",
+    "friction_trigger": "LOW_FRICTION_STABLE",
+    "downscale_factor": 1.0,
+    "core_principle": "Pair a behavior you need to do with an immediate sensory reward you enjoy to close the neurological dopamine loop.",
+    "coaching_directive": "Instruct the user to pair this specific task with an immediate guilty-pleasure reward during execution."
+  }
+]

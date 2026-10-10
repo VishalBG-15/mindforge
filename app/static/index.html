@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6f4">
+    <title>MindForge — Habit workspace</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#overview" aria-label="MindForge home">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>mindforge</span>
+        </a>
+        <div class="sidebar-label">WORKSPACE</div>
+        <nav class="nav-links">
+          <a class="nav-link active" href="#overview" aria-current="page">
+            <span class="nav-icon" aria-hidden="true">◫</span> Overview
+          </a>
+          <a class="nav-link" href="#habits">
+            <span class="nav-icon" aria-hidden="true">◷</span> My habits
+          </a>
+        </nav>
+        <div class="sidebar-note">
+          <span class="note-spark" aria-hidden="true">✳</span>
+          <p>Small actions, repeated with intention, become real change.</p>
+        </div>
+        <div class="sidebar-footer"><span class="status-dot"></span> Your space, your pace</div>
+      </aside>
+
+      <main id="overview" class="main-content">
+        <header class="topbar">
+          <div class="breadcrumb"><span>Workspace</span><span aria-hidden="true">/</span><strong>Overview</strong></div>
+          <div class="topbar-date" id="today-label"></div>
+        </header>
+
+        <section class="welcome-section" aria-labelledby="welcome-title">
+          <div>
+            <p class="eyebrow">A LITTLE BETTER, EVERY DAY</p>
+            <h1 id="welcome-title">Build momentum.<br><span>At your own pace.</span></h1>
+            <p class="welcome-copy">Show up for the habits that matter. The rest is progress.</p>
+          </div>
+          <div class="welcome-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="art-core"><span>✳</span></div>
+            <span class="art-dot dot-one"></span><span class="art-dot dot-two"></span><span class="art-dot dot-three"></span>
+          </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Habit overview">
+          <article class="stat-card">
+            <span class="stat-icon violet" aria-hidden="true">◉</span>
+            <div><p class="stat-label">Active habits</p><p class="stat-value" id="active-count">—</p></div>
+            <span class="stat-caption">in your routine</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon green" aria-hidden="true">✓</span>
+            <div><p class="stat-label">Recent check-ins</p><p class="stat-value" id="checkin-count">—</p></div>
+            <span class="stat-caption">up to 14, selected habit</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon amber" aria-hidden="true">↗</span>
+            <div><p class="stat-label">Entry streak</p><p class="stat-value" id="streak-count">—</p></div>
+            <span class="stat-caption">completed logs in a row</span>
+          </article>
+        </section>
+
+        <div class="section-heading" id="habits">
+          <div>
+            <p class="eyebrow">YOUR PRACTICE</p>
+            <h2>Your habits</h2>
+          </div>
+          <button class="button button-primary" id="show-create" type="button">
+            <span aria-hidden="true">＋</span> Add a habit
+          </button>
+        </div>
+
+        <section class="create-panel panel" id="create-panel" hidden aria-labelledby="create-title">
+          <div class="panel-heading">
+            <div><p class="eyebrow">START SMALL</p><h3 id="create-title">Create a habit</h3></div>
+            <button class="icon-button" id="hide-create" type="button" aria-label="Close create habit form">×</button>
+          </div>
+          <form id="create-form">
+            <div class="form-row">
+              <label class="field">Habit name
+                <input name="title" maxlength="100" required placeholder="e.g. Take a morning walk" autocomplete="off">
+              </label>
+              <label class="field">A little more about it <span class="optional">(optional)</span>
+                <input name="description" maxlength="500" placeholder="What would make this feel doable?">
+              </label>
+            </div>
+            <div class="form-actions">
+              <p class="form-message" id="create-message" role="status"></p>
+              <button class="button button-primary" type="submit" id="create-submit">Create habit <span aria-hidden="true">→</span></button>
+            </div>
+          </form>
+        </section>
+
+        <div class="content-grid">
+          <section class="habits-column" aria-label="Your habit list">
+            <div id="global-message" class="message-banner" role="status" hidden></div>
+            <div id="habits-loading" class="loading-state"><span class="spinner" aria-hidden="true"></span> Loading your habits…</div>
+            <div id="habit-list" class="habit-list"></div>
+            <div id="empty-state" class="empty-state" hidden>
+              <div class="empty-icon" aria-hidden="true">✳</div>
+              <h3>A fresh page</h3>
+              <p>You haven’t added a habit yet. Start with one small thing you’d like to make space for.</p>
+              <button class="button button-primary" id="empty-create" type="button">Create your first habit <span aria-hidden="true">→</span></button>
+            </div>
+          </section>
+
+          <aside class="detail-column" aria-label="Selected habit details">
+            <section class="panel detail-panel">
+              <div class="panel-heading">
+                <div><p class="eyebrow">TODAY, NOT FOREVER</p><h3 id="selected-title">Pick a habit</h3></div>
+                <span class="detail-symbol" aria-hidden="true">✳</span>
+              </div>
+              <p class="selected-description" id="selected-description">Choose a habit to see its check-in history and add a reflection.</p>
+              <form id="checkin-form" hidden>
+                <fieldset class="choice-fieldset">
+                  <legend>How did it go?</legend>
+                  <div class="choice-row">
+                    <label class="choice-option"><input type="radio" name="completed" value="true" checked><span>✓ &nbsp; I did it</span></label>
+                    <label class="choice-option"><input type="radio" name="completed" value="false"><span>— &nbsp; Not today</span></label>
+                  </div>
+                </fieldset>
+                <label class="field">Reflection <span class="optional">(optional)</span>
+                  <textarea name="notes" rows="3" maxlength="500" placeholder="What helped, or got in the way?"></textarea>
+                </label>
+                <div class="form-actions">
+                  <p class="form-message" id="checkin-message" role="status"></p>
+                  <button class="button button-primary button-wide" id="checkin-submit" type="submit">Save check-in <span aria-hidden="true">→</span></button>
+                </div>
+              </form>
+              <div id="checkin-placeholder" class="checkin-placeholder"><span aria-hidden="true">↖</span> Select a habit to log a check-in</div>
+            </section>
+
+            <section class="panel history-panel">
+              <div class="panel-heading history-heading">
+                <div><p class="eyebrow">RECENT ACTIVITY</p><h3>Check-in history</h3></div>
+                <span class="history-count" id="history-count">—</span>
+              </div>
+              <div id="logs-loading" class="subtle-loading" hidden><span class="spinner small" aria-hidden="true"></span> Loading history…</div>
+              <div id="log-list" class="log-list"></div>
+              <div id="logs-empty" class="logs-empty">Your check-ins will show up here.</div>
+            </section>
+          </aside>
+        </div>
+
+        <section class="council-section" aria-labelledby="council-title">
+          <div class="council-intro">
+            <div>
+              <p class="eyebrow">A FRESH PERSPECTIVE</p>
+              <h2 id="council-title">Ask the Council</h2>
+              <p>Get a thoughtful review of your habit’s recent check-ins and a practical next step.</p>
+            </div>
+            <button class="button button-dark" id="council-button" type="button" disabled>
+              <span aria-hidden="true">✳</span> Request guidance
+            </button>
+          </div>
+          <div id="council-message" class="message-banner" role="status" hidden></div>
+          <div id="council-loading" class="council-loading" hidden><span class="spinner" aria-hidden="true"></span> The Council is reflecting on your recent check-ins…</div>
+          <div id="council-result" class="council-result" hidden aria-live="polite"></div>
+        </section>
+        <footer class="page-footer">Progress isn’t a straight line. Keep going in your own way.</footer>
+      </main>
+    </div>
+  </body>
+</html>

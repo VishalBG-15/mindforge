@@ -1,0 +1,19 @@
+# Virtual environment
+venv/
+
+# Editor and extension caches
+.vscode/
+.qodo/
+
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local SQLite databases
+*.db
+*.sqlite3
+.env
+
+
+  
